@@ -1,0 +1,68 @@
+---
+title: "Assignment 3.3"
+author: "Tyler Anderson"
+date: "December 15, 2019"
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+
+dodger <- read.csv("dodgers.csv", header = TRUE)
+
+```
+
+## Attendance per month
+
+Since attendance is the main variable to determine what day is best to run a marketing promotion we will use that in our plots. In this example we can see July has a highest maximum attendance rate but on average is not that impressive. Jun however, has a high attendance rate and has a high average.
+
+```{r}
+
+ggplot(dodger, aes(x = month, y = attend, color)) +
+    geom_boxplot(na.rm = TRUE)
+```
+
+## Attendance per promotion 
+
+When looking at the promotions we can see that when bobbleheads are promoted they tend to have higher attendance. 
+
+```{r}
+ggplot(dodger, aes(x = bobblehead, y = attend)) +
+    geom_point(na.rm = TRUE) +
+    geom_jitter()
+
+ggplot(dodger, aes(x = cap, y = attend)) +
+    geom_point(na.rm = TRUE) +
+    geom_jitter()
+
+ggplot(dodger, aes(x = shirt, y = attend)) +
+    geom_point(na.rm = TRUE) +
+    geom_jitter()
+
+ggplot(dodger, aes(x = fireworks, y = attend)) +
+    geom_point(na.rm = TRUE) +
+    geom_jitter()
+```
+
+## Day of Week and time of game
+
+We can see there are more games played at night and a higher attendance on tuesday.
+
+```{r}
+ggplot(dodger, aes(x = day_of_week, y = attend)) +
+    geom_boxplot(na.rm = TRUE) +
+    geom_jitter()
+
+ggplot(dodger, aes(x = day_night, y = attend)) +
+    geom_point(na.rm = TRUE) +
+    geom_jitter()
+
+
+```
+
+### Conclusion 
+
+Looking at our data and our exploration, Bobbleheads are a large driving factor in high attendance along with games in July and June. If the goal is to pick a day with the highest amount of attendance in both months then the top 3 days are July 1st, 14th and Jun 12th. All three of these dates had a bobblehead promotion and were all warm nights. If the goal was to pick a date where there was low attendance and use that to determine what promotion to use to drive up attendance, then I would pick May 14th. It had the lowest attendance and no promotion. A promotion of bobbleheads might have driven up attendance.  
